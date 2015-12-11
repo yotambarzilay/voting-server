@@ -1,4 +1,4 @@
-import Immutable, {List, Map} from 'immutable';
+import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
 import {setEntries, next, vote} from '../src/core';
@@ -42,7 +42,7 @@ describe('application logic', () => {
         });
 
         it('puts winner of current vote back to entries', () => {
-            const state = Immutable.fromJS({
+            const state = fromJS({
                 vote: {
                     pair: ['Trainspotting', '28 Days Later'],
                     tally: {
@@ -55,7 +55,7 @@ describe('application logic', () => {
 
             const nextState = next(state);
 
-            expect(nextState).to.equal(Immutable.fromJS({
+            expect(nextState).to.equal(fromJS({
                 vote: {
                     pair: ['Sunshine', 'Millions']
                 },
@@ -64,7 +64,7 @@ describe('application logic', () => {
         });
 
         it('puts both from tied vote back to entries', () => {
-            const state = Immutable.fromJS({
+            const state = fromJS({
                 vote: {
                     pair: ['Trainspotting', '28 Days Later'],
                     tally: {
@@ -77,7 +77,7 @@ describe('application logic', () => {
 
             const nextState = next(state);
 
-            expect(nextState).to.equal(Immutable.fromJS({
+            expect(nextState).to.equal(fromJS({
                 vote: {
                     pair: ['Sunshine', 'Millions']
                 },
@@ -86,7 +86,7 @@ describe('application logic', () => {
         });
 
         it('marks winner when just one entry left', () => {
-            const state = Immutable.fromJS({
+            const state = fromJS({
                 vote: {
                     pair: ['Trainspotting', '28 Days Later'],
                     tally: {
